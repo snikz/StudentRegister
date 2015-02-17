@@ -34,6 +34,7 @@ namespace Assignment_7_db
             gridStudentGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
+            gridStudentGradeCourse2.Visibility = Visibility.Hidden;
         }
 
         private void Student_Click(object sender, RoutedEventArgs e)
@@ -44,6 +45,7 @@ namespace Assignment_7_db
             gridStudentGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
+            gridStudentGradeCourse2.Visibility = Visibility.Hidden;
             gridStudent.DataContext = dx.students;
         }
 
@@ -55,6 +57,7 @@ namespace Assignment_7_db
             gridStudentGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
+            gridStudentGradeCourse2.Visibility = Visibility.Hidden;
             gridGrade.DataContext = dx.grades;
         }
 
@@ -66,6 +69,7 @@ namespace Assignment_7_db
             gridStudentGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
+            gridStudentGradeCourse2.Visibility = Visibility.Hidden;
             gridCourse.DataContext = dx.courses;
         }
 
@@ -77,6 +81,7 @@ namespace Assignment_7_db
             gridStudentGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
+            gridStudentGradeCourse2.Visibility = Visibility.Hidden;
             gridStudent.DataContext = dx.students.Where(stud => stud.studentname.Contains(searchName.Text));
         }
 
@@ -142,8 +147,8 @@ namespace Assignment_7_db
                 .Where(stud => stud.studentname == temp.studentname)
                 .Join(dx.grades, stud => stud.id, gr => gr.studentid, (stud, gr) => new { stud.studentname, gr.grade1, gr.coursecode })
                 .Join(dx.courses, gr => gr.coursecode, course => course.coursecode, (gr, course) => new { gr.studentname, gr.grade1, course.coursename });
-            gridStudentGradeCourse.DataContext = test;
-            gridStudentGradeCourse.Visibility = Visibility.Visible;
+            gridStudentGradeCourse2.DataContext = test;
+            gridStudentGradeCourse2.Visibility = Visibility.Visible;
             gridStudent.Visibility = Visibility.Hidden;
         }
 
@@ -151,10 +156,9 @@ namespace Assignment_7_db
         {
             searchName.Text = "";
         }
-
-        private void searchName_LostFocus(object sender, RoutedEventArgs e)
+        private void Viewbox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            searchName.Text = "Write name";
+            MessageBox.Show("Create by Simen!\r\nCopyright © 2015", "About program");
         }
     }
 }
