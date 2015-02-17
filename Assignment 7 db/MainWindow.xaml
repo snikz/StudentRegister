@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ListView x:Name="gridStudent" ItemsSource="{Binding}"  Margin="10,10,200,10">
+        <ListView x:Name="gridStudent" ItemsSource="{Binding}"  Margin="10,10,200,10" MouseDoubleClick="Student_Click">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=id}" Header="ID"/>

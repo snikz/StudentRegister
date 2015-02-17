@@ -83,12 +83,10 @@ namespace Assignment_7_db
         private void gridGrade_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             grade temp = (grade)gridGrade.SelectedItem;
-            var allAbove = dx.grades.Where(gr => (gr.grade1.CompareTo(temp.grade1) <= 0));
-            var test = dx.students.Select(stud => new {stud.studentname, stud.id})
-                .Join(allAbove, stud => stud.id, gr => gr.studentid, (stud, gr)
-                => new { stud.studentname, gr.grade1, gr.coursecode })
-                .Join(dx.courses, gr => gr.coursecode, course => course.coursecode, (gr, course)
-                => new { gr.studentname, gr.grade1, course.coursename });
+            var test = dx.students.Select(stud => new { stud.studentname, stud.id })
+                .Join(dx.grades, stud => stud.id, gr => gr.studentid, (stud, gr) => new { stud.studentname, gr.grade1, gr.coursecode })
+                .Where(gr => gr.grade1.CompareTo(temp.grade1) <= 0)
+                .Join(dx.courses, gr => gr.coursecode, course => course.coursecode, (gr, course) => new { gr.studentname, gr.grade1, course.coursename });
 
             gridStudentGradeCourse.DataContext = test;
 
@@ -130,11 +128,23 @@ namespace Assignment_7_db
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Visible;
 
-            var allFail = dx.grades.Where(gr => (gr.grade1.CompareTo('f') == 0));
             var test = dx.students.Select(stud => new { stud.studentname, stud.id })
-                .Join(allFail, stud => stud.id, gr => gr.studentid, (stud, gr) => new { stud.studentname, gr.coursecode, gr.grade1 })
+                .Join(dx.grades, stud => stud.id, gr => gr.studentid, (stud, gr) => new { stud.studentname, gr.coursecode, gr.grade1 })
+                .Where(gr => gr.grade1.CompareTo('f') == 0)
                 .Join(dx.courses, gr => gr.coursecode, course => course.coursecode, (gr, course) => new { gr.studentname, gr.grade1, course.coursename });
             gridStudentFailed.DataContext = test;
+        }
+
+        private void Student_Click(object sender, MouseButtonEventArgs e)
+        {
+            student temp = (student)gridStudent.SelectedItem;
+            var test = dx.students.Select(stud => new { stud.id, stud.studentname })
+                .Where(stud => stud.studentname == temp.studentname)
+                .Join(dx.grades, stud => stud.id, gr => gr.studentid, (stud, gr) => new { stud.studentname, gr.grade1, gr.coursecode })
+                .Join(dx.courses, gr => gr.coursecode, course => course.coursecode, (gr, course) => new { gr.studentname, gr.grade1, course.coursename });
+            gridStudentGradeCourse.DataContext = test;
+            gridStudentGradeCourse.Visibility = Visibility.Visible;
+            gridStudent.Visibility = Visibility.Hidden;
         }
     }
 }
