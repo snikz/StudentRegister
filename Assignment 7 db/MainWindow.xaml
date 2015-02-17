@@ -1,0 +1,70 @@
+﻿<Window x:Class="Assignment_7_db.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <ListView x:Name="gridStudent" ItemsSource="{Binding}"  Margin="10,10,200,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=id}" Header="ID"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentname}" Header="Student" />
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentage}" Header="Age"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="gridCourse" ItemsSource="{Binding}" Margin="10,10,200,10" MouseDoubleClick="gridCourse_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursecode}" Header="Code"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursename}" Header="Name"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=semester}" Header="Semester" />
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=teacher}" Header="Teacher"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="gridGrade" ItemsSource="{Binding}" Margin="10,10,200,10" MouseDoubleClick="gridGrade_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentid}" Header="Student"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursecode}" Header="Code"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=grade1}" Header="Grade"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="gridStudentGrade" ItemsSource="{Binding}" Margin="10,10,200,10" MouseDoubleClick="gridGrade_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentname}" Header="Student"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=grade1}" Header="Grade"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="gridStudentGradeCourse" ItemsSource="{Binding}" Margin="10,10,200,10" MouseDoubleClick="gridGrade_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentname}" Header="Student"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=grade1}" Header="Grade"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursename}" Header="Course" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="gridStudentFailed" ItemsSource="{Binding}" Margin="10,10,200,10" MouseDoubleClick="gridGrade_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentname}" Header="Student"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursename}" Header="Course" />
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=grade1}" Header="Grade"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button  Content="Students" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Student_Click"/>
+        <Button Content="Courses" Margin="10,40,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Course_Click"/>
+        <Button Content="Grades" Margin="10,70,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Grade_Click"/>
+        <TextBox x:Name="searchName" Width="81" Height="20" Margin="10,100,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Content="Search name" HorizontalAlignment="Right" Margin="10,130,10,10" VerticalAlignment="Top" Width="81" Click="SearchName_Click"/>
+        <Button Content="Who failed?" HorizontalAlignment="Right" Margin="10,160,10,10" VerticalAlignment="Top" Width="81" Click="Failed_Click"/>
+
+    </Grid>
+</Window>
