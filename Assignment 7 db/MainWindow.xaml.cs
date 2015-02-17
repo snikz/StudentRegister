@@ -146,5 +146,15 @@ namespace Assignment_7_db
             gridStudentGradeCourse.Visibility = Visibility.Visible;
             gridStudent.Visibility = Visibility.Hidden;
         }
+
+        private void searchName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchName.Text = "";
+        }
+
+        private void searchName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            searchName.Text = "Write name";
+        }
     }
 }
