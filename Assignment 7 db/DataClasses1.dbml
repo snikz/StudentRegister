@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="tod112" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=tod112.hib.no,1443;Initial Catalog=tod112;Persist Security Info=True;User ID=tod112" SettingsObjectName="Assignment_7_db.Properties.Settings" SettingsPropertyName="tod112ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.course" Member="courses">
+    <Type Name="course">
+      <Column Name="coursecode" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="coursename" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="semester" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="teacher" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="course_grade" Member="grades" ThisKey="coursecode" OtherKey="coursecode" Type="grade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.grade" Member="grades">
+    <Type Name="grade">
+      <Column Name="studentid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="coursecode" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="grade" Member="grade1" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="course_grade" Member="course" ThisKey="coursecode" OtherKey="coursecode" Type="course" IsForeignKey="true" />
+      <Association Name="student_grade" Member="student" ThisKey="studentid" OtherKey="id" Type="student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.student" Member="students">
+    <Type Name="student">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="studentname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="studentage" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="student_grade" Member="grades" ThisKey="id" OtherKey="studentid" Type="grade" />
+    </Type>
+  </Table>
+</Database>
