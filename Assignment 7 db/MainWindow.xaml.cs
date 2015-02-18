@@ -58,7 +58,7 @@ namespace Assignment_7_db
             gridStudentGradeCourse.Visibility = Visibility.Hidden;
             gridStudentFailed.Visibility = Visibility.Hidden;
             gridStudentGradeCourse2.Visibility = Visibility.Hidden;
-            gridGrade.DataContext = dx.grades;
+            gridGrade.DataContext = dx.grades.GroupBy(g => g.grade1).Select(g => g.First());
         }
 
         private void Course_Click(object sender, RoutedEventArgs e)
@@ -97,7 +97,7 @@ namespace Assignment_7_db
 
             gridGrade.Visibility = Visibility.Hidden;
             gridStudentGradeCourse.Visibility = Visibility.Visible;
-            
+
         }
 
         private void gridCourse_MouseDoubleClick(object sender, MouseButtonEventArgs e)

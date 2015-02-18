@@ -31,9 +31,7 @@
         <ListView x:Name="gridGrade" ItemsSource="{Binding}" Margin="5,5,100,5" MouseDoubleClick="gridGrade_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=studentid}" Header="Student"/>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=coursecode}" Header="Code"/>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=grade1}" Header="Grade"/>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Path=grade1}" Header="Choose the lowest grade to show!"/>
                 </GridView>
             </ListView.View>
         </ListView>
