@@ -158,7 +158,7 @@ namespace Assignment_7_db
         }
         private void Viewbox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Create by Simen!\r\nCopyright © 2015", "About program");
+            MessageBox.Show("Created by Simen and Andreas!\r\nCopyright © 2015", "About program");
         }
     }
 }
